@@ -7,32 +7,31 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: 3.1.2
+        version: 3.1.2(svelte@4.2.19)(vite@5.4.8)
       '@threlte/core':
         specifier: ^7.3.1
         version: 7.3.1(svelte@4.2.19)(three@0.169.0)
       '@threlte/extras':
         specifier: ^8.11.5
         version: 8.11.5(@types/three@0.169.0)(svelte@4.2.19)(three@0.169.0)
-      '@types/three':
-        specifier: ^0.169.0
-        version: 0.169.0
-      three:
-        specifier: ^0.169.0
-        version: 0.169.0
-    devDependencies:
-      '@sveltejs/vite-plugin-svelte':
-        specifier: 3.1.2
-        version: 3.1.2(svelte@4.2.19)(vite@5.4.8)
       '@tsconfig/svelte':
         specifier: ^5.0.4
         version: 5.0.4
+      '@types/three':
+        specifier: ^0.169.0
+        version: 0.169.0
       svelte:
         specifier: 4.2.19
         version: 4.2.19
       svelte-check:
         specifier: ^4.0.4
         version: 4.0.4(svelte@4.2.19)(typescript@5.6.2)
+      three:
+        specifier: ^0.169.0
+        version: 0.169.0
       tslib:
         specifier: ^2.7.0
         version: 2.7.0
