@@ -29,7 +29,7 @@
   glossy.roughnessMap = roughnessMap;
 
   const box = $state(new T.Mesh(boxGeo, glossy));
-  box.position.y = 3;
+  box.position.y = 4;
   box.castShadow = true;
 
   // Floor
@@ -46,8 +46,13 @@
   // Light
   let light = new T.DirectionalLight(0xffffff, 3);
   light.position.set(10, 20, 10);
-  light.target.position.set(0, 0, 0);
+  light.target.position.set(0, 4, 0);
   light.castShadow = true;
+  const D = 10;
+  light.shadow.camera.left = -D;
+  light.shadow.camera.right = D;
+  light.shadow.camera.top = D;
+  light.shadow.camera.bottom = -D;
   // const ambient = new T.AmbientLight("pink", 0.5);
   let t = 0;
   animate(() => {
