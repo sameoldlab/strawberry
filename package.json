@@ -6,25 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@dimforge/rapier3d-compat": "^0.14.0",
-    "@sveltejs/vite-plugin-svelte": "4.0.0-next.6",
-    "@threlte/core": "8.0.0-next.17",
-    "@threlte/extras": "9.0.0-next.23",
-    "@threlte/rapier": "^2.0.1",
-    "@tsconfig/svelte": "^5.0.4",
     "@types/three": "^0.169.0",
-    "svelte": "5.0.0-next.262",
-    "svelte-check": "^4.0.4",
+    "ammojs-typed": "^1.0.6",
     "three": "^0.169.0",
-    "tslib": "^2.7.0",
     "typescript": "^5.6.2",
+    "three-gpu-pathtracer": "^0.0.23",
     "vite": "^5.4.8"
-  },
-  "dependencies": {
-    "three-gpu-pathtracer": "^0.0.23"
   }
 }

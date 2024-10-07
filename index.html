@@ -5,11 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strawberry</title>
+  <style>
+    div {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div id="canvas-container"> </div>
+  </div>
+  <script src="src/lib/ammo.js"></script>
   <script type="module" src="/src/main.ts"></script>
+  <!-- <script type="module" src="/src/attractor.ts"></script> -->
+
 </body>
 
 </html>
