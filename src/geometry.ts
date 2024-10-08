@@ -1,6 +1,7 @@
 import * as T from 'three'
+import roughness from "./assets/Poliigon_PlasticMoldDryBlast_7495_Roughness.png";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { RoomEnvironment } from './src/lib/environment'
+import { RoomEnvironment } from './lib/environment'
 
 export const initGeometry = (el: HTMLElement, animate: () => void) => {
   const scene: T.Scene = new T.Scene()
@@ -78,3 +79,35 @@ export const initGeometry = (el: HTMLElement, animate: () => void) => {
   }
 }
 
+
+const roughnessMap = new T.TextureLoader().load(roughness);
+roughnessMap.magFilter = T.NearestFilter;
+export const glossyMat = (color = '#ae2a37') => new T.MeshStandardMaterial({
+  color,
+  roughness: 1,
+  roughnessMap
+});
+
+export const createDrup = (radius = 3, color: string | undefined = undefined) => {
+  const boxGeo = new T.SphereGeometry(radius, 32, 32)
+  const drup = new T.Mesh(boxGeo, glossyMat(color))
+  drup.castShadow = true
+  drup.receiveShadow = true
+
+  return drup
+}
+
+export const createShadowCatcher = () => {
+
+  // Floor
+  const shadowCatcher = new T.Mesh(
+    new T.CircleGeometry(100, 100),
+    new T.ShadowMaterial({
+      opacity: 0.4,
+    }),
+  )
+  shadowCatcher.receiveShadow = true
+  shadowCatcher.rotation.x = -Math.PI / 2
+
+  return shadowCatcher
+}

@@ -2,7 +2,7 @@ import * as T from 'three'
 import type AmmoT from 'ammojs-typed'
 import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js'
 import { scene } from './main'
-import { createDrup } from './meshes'
+import { createDrup } from './geometry'
 
 interface BufferGeometry extends T.BufferGeometry {
   ammoIndices: T.TypedArray
@@ -268,28 +268,32 @@ export function updatePhysics(deltaTime: number) {
 
     const mesh = rigidBodies[i];
     const body: AmmoT.btRigidBody = mesh.userData.physicsBody;
-    const ms = body.getMotionState();
+
+    // Calulate drag
     const velocity = body.getLinearVelocity();
     let dragForce = new Ammo.btVector3(
       -velocity.x() * DRAG,
       -velocity.y() * DRAG,
       -velocity.z() * DRAG,
     );
-    body.applyCentralForce(dragForce)
     let pos = body.getWorldTransform().getOrigin()
-    // Calculate direction to attractor
+
+    // Calculate attractor
     let direction = new Ammo.btVector3(
       attractor.x() - pos.x(),
       attractor.y() - pos.y(),
       attractor.z() - pos.z()
     );
-
-    // Normalize and scale the force
     direction.normalize();
     direction.op_mul(ATTRACTOR_STRENGTH);
-    body.applyCentralForce(direction);
-    body.applyCentralForce(dragForce)
 
+    // Apply Forces
+    body.applyCentralForce(dragForce)
+    Ammo.destroy(dragForce)
+    body.applyCentralForce(direction);
+    Ammo.destroy(direction)
+
+    const ms = body.getMotionState();
     if (ms) {
       ms.getWorldTransform(transformAux1);
       const p = transformAux1.getOrigin();
